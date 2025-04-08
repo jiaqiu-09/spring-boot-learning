@@ -1,5 +1,8 @@
 package com.scania.spring_boot_learning;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class AliPayPaymentService implements PaymentService {
 
     @Override
