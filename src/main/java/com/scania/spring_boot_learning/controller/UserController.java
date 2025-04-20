@@ -5,6 +5,7 @@ import com.scania.spring_boot_learning.pojo.User;
 import com.scania.spring_boot_learning.pojo.dto.UserDto;
 import com.scania.spring_boot_learning.service.IUserInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,7 @@ public class UserController {
     IUserInterface userInterface;
 
     @PostMapping
-    public ResponseMessage<User> add(@RequestBody UserDto user) {
-        try {
-            return ResponseMessage.success(userInterface.add(user));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseMessage.error("Error adding user: " + e.getMessage(), null);
-        }
+    public ResponseMessage<User> add(@Validated @RequestBody UserDto user) {
+        return ResponseMessage.success(userInterface.add(user));
     }
 }
