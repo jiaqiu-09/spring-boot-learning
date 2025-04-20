@@ -20,4 +20,23 @@ public class UserService implements IUserInterface {
         System.out.println("User added: " + user1);
         return user1;
     }
+
+    @Override
+    public User get(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " not found"));
+    }
+
+    @Override
+    public void delete(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public User edit(UserDto user) {
+        User userPojo = new User();
+        BeanUtils.copyProperties(user, userPojo);
+        final User user1 = userRepository.save(userPojo);
+        System.out.println("User updated: " + user1);
+        return user1;
+    }
 }

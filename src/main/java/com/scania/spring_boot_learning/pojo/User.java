@@ -2,7 +2,7 @@ package com.scania.spring_boot_learning.pojo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 
 @Table(name = "user")
 @Entity
@@ -19,8 +19,8 @@ public class User {
     @NotBlank(message = "Email cannot be blank")
     private String userEmail;
     @Column(name = "user_password")
-    @NotBlank
-    @Length(min = 6, max = 12, message = "Password length must be between 6 and 12 characters")
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 6, max = 12, message = "Password length must be between 6 and 12 characters")
     private String userPassword;
 
     public Integer getUserId() {
